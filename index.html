@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>오늘의 날씨</title>
+  <meta name="theme-color" content="#1c3f75">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-sky="clear">
+  <div class="app">
+    <header class="toolbar">
+      <form class="search" id="search-form" role="search" autocomplete="off">
+        <label class="sr-only" for="search-input">도시 검색</label>
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg>
+        <input id="search-input" type="search" placeholder="지역 검색 (예: 봉평면, Tokyo)"
+               role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list">
+        <ul id="search-results" class="results" role="listbox" aria-label="검색 결과" hidden></ul>
+      </form>
+      <button class="tool-btn" id="locate-btn" type="button" aria-label="현재 위치의 날씨 보기" title="현재 위치">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2" class="filled"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>
+      </button>
+      <button class="tool-btn unit" id="unit-btn" type="button" aria-label="온도 단위를 화씨로 변경" title="온도 단위 변경">°C</button>
+    </header>
+
+    <nav class="recents" id="recents" aria-label="최근 본 도시" hidden></nav>
+
+    <div class="banner" id="banner" role="alert" hidden>
+      <span id="banner-text"></span>
+      <button type="button" id="banner-retry" hidden>다시 시도</button>
+    </div>
+
+    <main id="content" aria-live="polite">
+      <p class="loading" id="loading">날씨를 불러오는 중…</p>
+    </main>
+
+    <footer class="credit">
+      데이터: <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a>
+      · 미세먼지는 모델 예측값으로, 실제 측정소 값과 다를 수 있습니다.<br>
+      읍면동 위치: 본 데이터는 통계청 통계지리정보서비스(<a href="https://sgis.kostat.go.kr" target="_blank" rel="noopener noreferrer">SGIS</a>)에서
+      공공누리 제1유형으로 개방한 행정동 경계를 가공한 것이며(가공: <a href="https://github.com/vuski/admdongkor" target="_blank" rel="noopener noreferrer">vuski/admdongkor</a>),
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>으로 배포됩니다. 이 앱에서는 중심 좌표만 계산해 사용합니다.
+    </footer>
+  </div>
+  <script src="regions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
